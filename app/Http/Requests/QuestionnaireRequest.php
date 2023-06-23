@@ -28,7 +28,7 @@ class QuestionnaireRequest extends FormRequest
             'user_id' => 'integer|in:'.backpack_user()->id,
             'questionnaire_title' => 'required|max:255',
             'questionnaire_description' => 'required',
-            'questionnaire_target' => 'integer|min:1',
+            'questionnaire_target' => 'required|integer|min:1',
         ];
     }
 

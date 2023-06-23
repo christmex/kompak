@@ -18,4 +18,5 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('form-category', 'FormCategoryCrudController');
     Route::crud('questionnaire', 'QuestionnaireCrudController');
+    Route::get('find-questionnaire', 'FindQuestionnaireController@index')->name('find-questionnaire.index');
 }); // this should be the absolute last line of this file

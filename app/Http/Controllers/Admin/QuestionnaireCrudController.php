@@ -39,6 +39,7 @@ class QuestionnaireCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::addClause('where', 'user_id', '=', backpack_user()->id);
         CRUD::addColumn([
             "name" => "form_category_id",
             "label" => "Form Category",
