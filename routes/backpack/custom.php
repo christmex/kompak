@@ -19,4 +19,5 @@ Route::group([
     Route::crud('form-category', 'FormCategoryCrudController');
     Route::crud('questionnaire', 'QuestionnaireCrudController');
     Route::get('find-questionnaire', 'FindQuestionnaireController@index')->name('find-questionnaire.index');
+    Route::get('answered-questionnaire', 'AnsweredQuestionnaireController@index')->name('answered-questionnaire.index');
 }); // this should be the absolute last line of this file
