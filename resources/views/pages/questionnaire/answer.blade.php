@@ -23,7 +23,7 @@
         <div class="col-md-6 col-lg-4">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Form details</h3>
+                    <h3 class="card-title">Detail Kuisioner</h3>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -34,18 +34,25 @@
                         <label class="form-label">Deskripsi Kuisioner <span class="form-label-description">56/100</span></label>
                         <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Content..">{{$questionnaire->questionnaire_description}}</textarea>
                     </div>
-                    <hr>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header">
+                    <h3 class="card-title">Selesaikan Kuisioner</h3>
+                </div>
+                <div class="card-body">
                     <div class="mb-3">
                         <label class="form-label">Bukti sudah mengisi kuesioner</label>
-                        <input type="text" class="form-control" value="{{$questionnaire->questionnaire_title}}" disabled>
+                        <input type="file" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Deskripsi(optional) <span class="form-label-description">56/100</span></label>
-                        <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Content.."></textarea>
+                        <label class="form-label">Deskripsi * <span class="form-label-description">56/100</span></label>
+                        <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Jika ada, apa yang ingin anda katakan kepada pemilik kuisioner?.."></textarea>
+                        <small class="form-hint">Optional</small>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button class="btn btn-primary">Simpan</button>
+                    <button class="btn btn-primary">Selesaikan Kuisioner</button>
                 </div>
             </div>
         </div>
