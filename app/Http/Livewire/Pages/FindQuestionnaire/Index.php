@@ -25,9 +25,9 @@ class Index extends Component
     public function render()
     {
         if(!empty($this->formFormCategory)){
-            $modelQuestionnaire = Questionnaire::with('User')->where('form_category_id',$this->formFormCategory)->paginate(1);
+            $modelQuestionnaire = Questionnaire::with('User')->where('is_active', true)->where('form_category_id',$this->formFormCategory)->paginate($this->pagination);
         }else {
-            $modelQuestionnaire = Questionnaire::with('User')->paginate($this->pagination);
+            $modelQuestionnaire = Questionnaire::with('User')->where('is_active', true)->paginate($this->pagination);
         }
 
         return view('livewire.pages.find-questionnaire.index',compact('modelQuestionnaire'));

@@ -17,8 +17,11 @@ Route::group([
     'namespace'  => 'App\Http\Controllers\Admin',
 ], function () { // custom admin routes
     Route::crud('form-category', 'FormCategoryCrudController');
-    // Route::crud('questionnaire', 'QuestionnaireCrudController');
-    Route::get('questionnaire', 'QuestionnaireController@index')->name('questionnaire.index');
+    Route::crud('questionnaire', 'QuestionnaireCrudController');
+    // Route::get('questionnaire/{questionnaire}/answer', 'QuestionnaireController@answer')->name('questionnaire.answer');
     Route::get('find-questionnaire', 'FindQuestionnaireController@index')->name('find-questionnaire.index');
     Route::get('answered-questionnaire', 'AnsweredQuestionnaireController@index')->name('answered-questionnaire.index');
+    Route::get('answered-questionnaire/{questionnaire}', 'AnsweredQuestionnaireController@answer')->name('answered-questionnaire.answer');
+    Route::crud('responder-request-type', 'ResponderRequestTypeCrudController');
+    Route::crud('responder', 'ResponderCrudController');
 }); // this should be the absolute last line of this file

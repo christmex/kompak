@@ -79,7 +79,7 @@
                             <p class="text-muted">{{$questionnaire->questionnaire_description}}</p>
                         </div>
                         <div class="card-footer">
-                            <a href="#" class="btn btn-primary">Saya Mau Bantu</a>
+                            <a href="{{route('answered-questionnaire.answer',$questionnaire)}}" class="btn btn-primary">Saya Mau Bantu</a>
                         </div>
                     </div>
                 </div>

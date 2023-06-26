@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class QuestionnaireRequest extends FormRequest
+class ResponderRequestTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,11 +25,7 @@ class QuestionnaireRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'integer|in:'.backpack_user()->id,
-            'questionnaire_title' => 'required|max:255',
-            'questionnaire_description' => 'required',
-            'questionnaire_target' => 'required|integer|min:1',
-            'questionnaire_embed_link' => 'required|unique:questionnaires,questionnaire_embed_link,'.request('id'),
+            'responder_request_type_name' => 'required|unique:responder_request_types,responder_request_type_name,'.request('id')
         ];
     }
 

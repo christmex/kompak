@@ -16,7 +16,9 @@ class Questionnaire extends Model
         'user_id',
         'questionnaire_title',
         'questionnaire_description',
-        'questionnaire_target'
+        'questionnaire_target',
+        'questionnaire_embed_link',
+        'is_active'
     ];
 
     public function User()

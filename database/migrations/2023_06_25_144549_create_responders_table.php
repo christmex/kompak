@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('questionnaires', function (Blueprint $table) {
+        Schema::create('responders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('form_category_id')->nullable()->constrained()->nullOnDelete();
-            $table->string('questionnaire_title');
-            $table->longText('questionnaire_description');
-            $table->tinyInteger('questionnaire_target');
-            $table->longText('questionnaire_embed_link');
-            $table->boolean('is_active')->default(true);
+            $table->foreignId('questionnaire_id')->constrained()->onDelete('cascade');
+            $table->foreignId('responder_request_type_id')->nullable()->constrained()->nullOnDelete();
+            $table->string('responder_proof')->nullable();
+            $table->longText('responder_description')->nullable();
+            $table->longText('responder_description_feedback')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('questionnaires');
+        Schema::dropIfExists('responders');
     }
 };

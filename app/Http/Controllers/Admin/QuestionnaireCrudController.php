@@ -60,6 +60,8 @@ class QuestionnaireCrudController extends CrudController
         CRUD::column('questionnaire_title');
         CRUD::column('questionnaire_description');
         CRUD::column('questionnaire_target');
+        CRUD::column('questionnaire_embed_link');
+        CRUD::column('is_active');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -78,7 +80,7 @@ class QuestionnaireCrudController extends CrudController
     {
         CRUD::setValidation(QuestionnaireRequest::class);
 
-        CRUD::field('form_category_id');
+        // CRUD::field('form_category_id');
         CRUD::addField([
             'type' => 'select',
             'label' => 'Form Category',
@@ -91,6 +93,8 @@ class QuestionnaireCrudController extends CrudController
         CRUD::field('questionnaire_title');
         CRUD::field('questionnaire_description');
         CRUD::field('questionnaire_target')->type('number')->attributes(['min' => 1]);
+        CRUD::field('questionnaire_embed_link')->type('textarea')->hint('Contoh : Masukkan html embed');
+        CRUD::field('is_active')->default(true);
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:
