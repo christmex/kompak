@@ -31,8 +31,8 @@
                         <input type="text" class="form-control" value="{{$questionnaire->questionnaire_title}}" disabled>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Deskripsi Kuisioner <span class="form-label-description">56/100</span></label>
-                        <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Content..">{{$questionnaire->questionnaire_description}}</textarea>
+                        <label class="form-label">Deskripsi Kuisioner </label>
+                        <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="{{$questionnaire->questionnaire_description}}" disabled></textarea>
                     </div>
                 </div>
             </div>
@@ -46,9 +46,8 @@
                         <input type="file" class="form-control">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Deskripsi * <span class="form-label-description">56/100</span></label>
+                        <label class="form-label">Deskripsi * <span class="form-label-description">*Optional</span></label>
                         <textarea class="form-control" name="example-textarea-input" rows="6" placeholder="Jika ada, apa yang ingin anda katakan kepada pemilik kuisioner?.."></textarea>
-                        <small class="form-hint">Optional</small>
                     </div>
                 </div>
                 <div class="card-footer">

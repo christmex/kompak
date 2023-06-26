@@ -7,9 +7,9 @@ use App\Models\Questionnaire;
 
 
 class Helper {
-    public static function getNewResponderNotification(){
+    public static function getNewResponderNotification($ids = [3]){
         $getAllQuestionnaire = Questionnaire::where('user_id',backpack_user()->id)->get()->pluck('id')->toArray();
-        $getNewResponderNotification = Responder::whereIn('questionnaire_id', $getAllQuestionnaire)->where('responder_request_type_id','!=', 3)->get()->count();
+        $getNewResponderNotification = Responder::whereIn('questionnaire_id', $getAllQuestionnaire)->whereIn('responder_request_type_id', $ids)->get()->count();
         return $getNewResponderNotification;
     }
 

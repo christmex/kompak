@@ -5,3 +5,6 @@
 
 - [ ] Buat custom operation untuk handle answer kuisioner 
 - [ ] Buat custom operation pemilik kuesioner punya button di menu responder untuk set sebagai accepted or feedback
+- [ ] Jika pemilik kuisioner memiliki responder yang sudah di acc dan memiliki kuisioner namu si pemilik tidak menjadi responder pada kuisioner responder maka kuisioner pemilik tidak akan bisa menerima responder baru kuisionernya tidak akan tampil di pencarian
+- [ ] Menu responder tidak bisa melakukan penambahan secara manual kecuali super admin, hilangkan akses ke button dan form create responder
+- [ ] embed link harusnya bukan tag iframe, tapi link url saja, kita pikirkan nnti ya

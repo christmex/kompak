@@ -35,4 +35,4 @@
     </div>
 </li>
 @endif
-<li class="nav-item position-relative"><a class="nav-link" href="{{ backpack_url('responder') }}"><i class="nav-icon la la-question"></i> Responders @if(Helper::getNewResponderNotification())<span class="badge bg-twitter badge-notification badge-pill">{{Helper::getNewResponderNotification()}}</span>@endif</a></li>
+<li class="nav-item position-relative"><a class="nav-link" href="{{ backpack_url('responder') }}"><i class="nav-icon la la-question"></i> Responders @if(Helper::getNewResponderNotification([2]))<span class="badge bg-twitter badge-notification badge-pill">{{Helper::getNewResponderNotification([2])}}</span>@endif</a></li>
