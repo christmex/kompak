@@ -23,4 +23,5 @@ Route::group([
     Route::get('answered-questionnaire/{questionnaire}', 'AnsweredQuestionnaireController@answer')->name('answered-questionnaire.answer');
     Route::crud('responder-request-type', 'ResponderRequestTypeCrudController');
     Route::crud('responder', 'ResponderCrudController');
+    Route::crud('user', 'UserCrudController');
 }); // this should be the absolute last line of this file

@@ -1,9 +1,5 @@
 {{-- This file is used for menu items by any Backpack v6 theme --}}
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('dashboard') }}"><i class="la la-home nav-icon"></i> {{ trans('backpack::base.dashboard') }}</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('questionnaire') }}"><i class="nav-icon la la-question"></i> Kuesioner Saya</a></li>
-<li class="nav-item"><a class="nav-link" href="{{backpack_url('find-questionnaire')}}"><i class="nav-icon la la-search"></i> Cari Kuesioner</a></li>
-<li class="nav-item position-relative"><a class="nav-link" href="{{backpack_url('answered-questionnaire')}}"><i class="nav-icon la la-trophy"></i> Kuisioner Yang Saya Isi @if(Helper::getTotalResponByResponderRequestType(4))<span class="badge bg-danger badge-notification badge-pill">{{Helper::getTotalResponByResponderRequestType(4)}}</span>@endif</a></a></li>
-
 @if(backpack_user()->email == 'super@admin.com')
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="outside" role="button" aria-expanded="true">
@@ -28,11 +24,16 @@
     <div class="dropdown-menu" data-bs-popper="static">
     <div class="dropdown-menu-columns">
         <div class="dropdown-menu-column">
-        <a class="dropdown-item" href="{{ backpack_url('form-category') }}"><i class="nav-icon la la-sort-alpha-up"></i> Form categories</a>
-        <a class="dropdown-item" href="{{ backpack_url('responder-request-type') }}"><i class="nav-icon la la-question"></i> Responder request types</a>
+            <a class="dropdown-item" href="{{ backpack_url('form-category') }}"><i class="nav-icon la la-sort-alpha-up"></i> Form categories</a>
+            <a class="dropdown-item" href="{{ backpack_url('responder-request-type') }}"><i class="nav-icon la la-question"></i> Responder request types</a>
+            <a class="dropdown-item" href="{{ backpack_url('user') }}"><i class="nav-icon la la-users"></i> Users</a>
         </div>
     </div>
     </div>
 </li>
 @endif
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('questionnaire') }}"><i class="nav-icon la la-question"></i> Kuesioner Saya</a></li>
+<li class="nav-item"><a class="nav-link" href="{{backpack_url('find-questionnaire')}}"><i class="nav-icon la la-search"></i> Cari Kuesioner</a></li>
+<li class="nav-item position-relative"><a class="nav-link" href="{{backpack_url('answered-questionnaire')}}"><i class="nav-icon la la-trophy"></i> Kuisioner Yang Saya Isi @if(Helper::getTotalResponByResponderRequestType(4))<span class="badge bg-danger badge-notification badge-pill">{{Helper::getTotalResponByResponderRequestType(4)}}</span>@endif</a></a></li>
+
 <li class="nav-item position-relative"><a class="nav-link" href="{{ backpack_url('responder') }}"><i class="nav-icon la la-question"></i> Responders @if(Helper::getNewResponderNotification([2]))<span class="badge bg-twitter badge-notification badge-pill">{{Helper::getNewResponderNotification([2])}}</span>@endif</a></li>
