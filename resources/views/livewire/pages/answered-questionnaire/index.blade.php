@@ -116,7 +116,7 @@
     <div class="row row-deck row-cards">
         @if(count($modelResponder))
             @foreach($modelResponder as $responder)
-                <div class="col-md-6 col-lg-3" wire:key="responder-{{ $responder->id }}">
+                <div class="col-md-6 col-lg-4" wire:key="responder-{{ $responder->id }}">
                     <div class="card card-stacked card-link card-link-rotate" title="{{$responder->Questionnaire->questionnaire_title}}" role="button">
                         <div class="ribbon ribbon-top bg-{!! Helper::getResponderRequestTypeBackground($responder->responder_request_type_id) !!}">
                             {!! Helper::getResponderRequestTypeIcon($responder->responder_request_type_id) !!}
@@ -130,7 +130,11 @@
                         </div>
                         <div class="card-footer">
                             <!-- Check dulu disini jika status bukan accepted maka tampilkan button jika udh accepted hanya bisa lihat, or tetap nampil buttontapi di halaman mau ngisi di disabled karnasudah di accep -->
-                            <a href="{{route('answered-questionnaire.answer',$responder)}}" class="btn btn-primary">Lihat</a>
+                            <!-- <a href="{{route('answered-questionnaire.answer',$responder->Questionnaire)}}" class="btn btn-primary">Lihat</a> -->
+                            @if($responder->responder_request_type_id != 3)
+                            <a href="{{route('responder.edit',$responder->id)}}" class="btn btn-success">Selesaikan</a>
+                            @endif
+                            <a href="{{$responder->questionnaire->questionnaire_embed_link}}" target="_blank" class="btn btn-primary">Lihat Kuisioner</a>
                         </div>
                     </div>
                 </div>

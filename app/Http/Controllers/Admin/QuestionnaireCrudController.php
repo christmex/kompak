@@ -93,7 +93,7 @@ class QuestionnaireCrudController extends CrudController
         CRUD::field('questionnaire_title');
         CRUD::field('questionnaire_description');
         CRUD::field('questionnaire_target')->type('number')->attributes(['min' => 1]);
-        CRUD::field('questionnaire_embed_link')->type('textarea')->hint('Contoh : Masukkan html embed');
+        CRUD::field('questionnaire_embed_link')->type('url')->hint('Contoh : Masukkan url kuisioner');
         CRUD::field('is_active')->default(true);
 
         /**

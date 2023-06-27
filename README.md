@@ -8,3 +8,6 @@
 - [ ] Jika pemilik kuisioner memiliki responder yang sudah di acc dan memiliki kuisioner namu si pemilik tidak menjadi responder pada kuisioner responder maka kuisioner pemilik tidak akan bisa menerima responder baru kuisionernya tidak akan tampil di pencarian
 - [ ] Menu responder tidak bisa melakukan penambahan secara manual kecuali super admin, hilangkan akses ke button dan form create responder
 - [ ] embed link harusnya bukan tag iframe, tapi link url saja, kita pikirkan nnti ya
+- [ ] ganti setiap error message sehingga pengguna lebih paham, contohnya responder description feedback, "The responder description feedback field is required when responder request type id is 4." jangan gunakan ini
+- [ ] lakukan pengecekan apakah user_id yang dikirim sama dengan user_id yang ada di tabel responder? ini dibagian responderrequest
+- [ ] Tombol saya mau bantu di menu cari kuisioner harus di ubah, redirect ke responder seperti yang dilakukan di menu kuesioner yang saya isi

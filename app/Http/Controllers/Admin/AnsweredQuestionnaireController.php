@@ -24,7 +24,8 @@ class AnsweredQuestionnaireController extends Controller
             ['responder_request_type_id' => 1]
         );
         
+        return redirect()->route('answered-questionnaire.index');
         // dd($questionnaire->questionnaire_embed_link);
-        return view('pages.questionnaire.answer',compact('questionnaire','insertResponder'));
+        // return view('pages.questionnaire.answer',compact('questionnaire','insertResponder'));
     }
 }

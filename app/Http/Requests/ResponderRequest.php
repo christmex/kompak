@@ -25,11 +25,13 @@ class ResponderRequest extends FormRequest
     public function rules()
     {
         return [
-            'user_id' => 'integer|in:'.backpack_user()->id,
+            // 'user_id' => 'integer|in:'.backpack_user()->id,
+            // lakukan pengecekan apakah user_id yang dikirim sama dengan user_id yang ada di tabel responder?
+            'user_id' => 'integer',
             'questionnaire_id' => 'required',
             'responder_request_type_id' => 'required',
-            'responder_proof' => 'required',
-
+            'responder_proof' => 'required|sometimes',
+            'responder_description_feedback' => 'required_if:responder_request_type_id,4',
         ];
     }
 
