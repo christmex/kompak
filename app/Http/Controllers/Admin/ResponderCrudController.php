@@ -160,7 +160,7 @@ class ResponderCrudController extends CrudController
             if(backpack_user()->id == $currentEntry->user_id){
                 $this->setupCreateOperation();
                 if(!($currentEntry->questionnaire->questionnaire_target - $currentEntry->questionnaire->countAllAcceptedResponder() > 0)){
-                    Helper::deleteResponderRequestTypeDecline($currentEntry->id);
+                    // Helper::deleteResponderRequestTypeDecline($currentEntry->id);
                     die('SORRY, THIS OWNER NOT ACCEPTING ANY RESPONDER');
                     // CRUD::denyAccess(['update']);
                     // abort_if(true, 404, 'Not accepting any responder');
@@ -210,12 +210,13 @@ class ResponderCrudController extends CrudController
 
             // This if for the kuisioner owner
             if(backpack_user()->id == $currentEntry->questionnaire->user_id){
-                if(!($currentEntry->questionnaire->questionnaire_target - $currentEntry->questionnaire->countAllAcceptedResponder() > 0)){
-                    Helper::deleteResponderRequestTypeDecline($currentEntry->id);
-                    die('SORRY, Your responder already done');
-                    // CRUD::denyAccess(['update']);
-                    // abort_if(true, 404, 'Not accepting any responder');
-                }
+                // use this kalo udah ndk mau nerima responder
+                // if(!($currentEntry->questionnaire->questionnaire_target - $currentEntry->questionnaire->countAllAcceptedResponder() > 0 && $currentEntry->responder_request_type_id != 3)){
+                //     Helper::deleteResponderRequestTypeDecline($currentEntry->id);
+                //     die('SORRY, Your responder already done');
+                //     // CRUD::denyAccess(['update']);
+                //     // abort_if(true, 404, 'Not accepting any responder');
+                // }
                 $this->setupCreateOperation();
                 CRUD::setHeading('Tinjau Kuisioner');
                 CRUD::setSubheading('');
