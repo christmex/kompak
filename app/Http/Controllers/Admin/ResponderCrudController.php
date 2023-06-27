@@ -45,13 +45,13 @@ class ResponderCrudController extends CrudController
         CRUD::removeButtons(['create','delete','update']);
         CRUD::addButtonFromModelFunction('line', 'reviewButton', 'reviewButton', 'beginning');
         CRUD::addButtonFromView('line', 'redirect_to_find_questionnaire', 'redirect_to_find_questionnaire', 'beginning');
-        Widget::add([
-            'type'         => 'alert',
-            'class'        => 'alert alert-danger mb-2',
-            'heading'      => 'Duh ada masalah nih, tidak bisa menerima responder baru!',
-            'content'      => 'Setelah menerima maximal <strong>3 responder</strong>, anda harus setidaknya menjadi responder kepada responder anda jika responder anda memiliki kuesioner<br>Silahkan klik tombol <strong>saya mau bantu</strong> di bawah.',
-            'close_button' => false, // show close button or not
-        ]);
+        // Widget::add([
+        //     'type'         => 'alert',
+        //     'class'        => 'alert alert-danger mb-2',
+        //     'heading'      => 'Duh ada masalah nih, tidak bisa menerima responder baru!',
+        //     'content'      => 'Setelah menerima maximal <strong>3 responder</strong>, anda harus setidaknya menjadi responder kepada responder anda jika responder anda memiliki kuesioner<br>Silahkan klik tombol <strong>saya mau bantu</strong> di bawah.',
+        //     'close_button' => false, // show close button or not
+        // ]);
 
         $getAllQuestionnaire = Questionnaire::where('user_id',backpack_user()->id)->get()->pluck('id')->toArray();
         CRUD::addClause('whereIn', 'questionnaire_id', $getAllQuestionnaire);
