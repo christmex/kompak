@@ -18,7 +18,6 @@ Route::group([
 ], function () { // custom admin routes
     Route::crud('form-category', 'FormCategoryCrudController');
     Route::crud('questionnaire', 'QuestionnaireCrudController');
-    // Route::get('questionnaire/{questionnaire}/answer', 'QuestionnaireController@answer')->name('questionnaire.answer');
     Route::get('find-questionnaire', 'FindQuestionnaireController@index')->name('find-questionnaire.index');
     Route::get('answered-questionnaire', 'AnsweredQuestionnaireController@index')->name('answered-questionnaire.index');
     Route::get('answered-questionnaire/{questionnaire}', 'AnsweredQuestionnaireController@answer')->name('answered-questionnaire.answer');
