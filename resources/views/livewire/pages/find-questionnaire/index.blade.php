@@ -88,6 +88,9 @@
                         </div>
                         <div class="card-footer">
                             <a href="{{route('answered-questionnaire.answer',$questionnaire)}}" class="btn btn-primary">Saya Mau Bantu</a>
+                            @if(backpack_user()->id == $questionnaire->user_id)
+                                <a href="{{route('questionnaire.edit',$questionnaire)}}" class="btn btn-link">Ubah</a>
+                            @endif
                         </div>
                     </div>
                 </div>
