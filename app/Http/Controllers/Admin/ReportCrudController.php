@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\ReportRequest;
+use Backpack\CRUD\app\Library\Widget;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -41,6 +42,13 @@ class ReportCrudController extends CrudController
     {
         if(backpack_user()->email != 'super@admin.com'){
             CRUD::addClause('where', 'user_id', backpack_user()->id);
+            Widget::add([
+                'type'         => 'alert',
+                'class'        => 'alert alert-success mb-2',
+                'heading'      => 'Horeee, Ini Adalah versi Beta Aplikasi Kompak 🙌',
+                'content'      => 'Jika terdapat hal hal yang tidak seharusnya terjadi, atau anda membutuhkan bantuan, dapat mengirim report kepada kami <strong><a href='.route('report.index').'>disini</a></strong>, feedback anda sangat berarti untuk kami, terima kasih.',
+                'close_button' => false, // show close button or not
+            ]);
         }
         CRUD::addColumn(
             [

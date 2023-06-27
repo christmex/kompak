@@ -52,6 +52,13 @@ class ResponderCrudController extends CrudController
         //     'content'      => 'Setelah menerima maximal <strong>3 responder</strong>, anda harus setidaknya menjadi responder kepada responder anda jika responder anda memiliki kuesioner<br>Silahkan klik tombol <strong>saya mau bantu</strong> di bawah.',
         //     'close_button' => false, // show close button or not
         // ]);
+        Widget::add([
+            'type'         => 'alert',
+            'class'        => 'alert alert-success mb-2',
+            'heading'      => 'Horeee, Ini Adalah versi Beta Aplikasi Kompak 🙌',
+            'content'      => 'Jika terdapat hal hal yang tidak seharusnya terjadi, atau anda membutuhkan bantuan, dapat mengirim report kepada kami <strong><a href='.route('report.index').'>disini</a></strong>, feedback anda sangat berarti untuk kami, terima kasih.',
+            'close_button' => false, // show close button or not
+        ]);
 
         $getAllQuestionnaire = Questionnaire::where('user_id',backpack_user()->id)->get()->pluck('id')->toArray();
         CRUD::addClause('whereIn', 'questionnaire_id', $getAllQuestionnaire);

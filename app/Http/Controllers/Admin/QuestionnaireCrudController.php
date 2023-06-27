@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Backpack\CRUD\app\Library\Widget;
 use App\Http\Requests\QuestionnaireRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -39,6 +40,13 @@ class QuestionnaireCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        Widget::add([
+            'type'         => 'alert',
+            'class'        => 'alert alert-success mb-2',
+            'heading'      => 'Horeee, Ini Adalah versi Beta Aplikasi Kompak 🙌',
+            'content'      => 'Jika terdapat hal hal yang tidak seharusnya terjadi, atau anda membutuhkan bantuan, dapat mengirim report kepada kami <strong><a href='.route('report.index').'>disini</a></strong>, feedback anda sangat berarti untuk kami, terima kasih.',
+            'close_button' => false, // show close button or not
+        ]);
         CRUD::addClause('where', 'user_id', '=', backpack_user()->id);
         CRUD::addColumn([
             "name" => "form_category_id",
