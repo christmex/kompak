@@ -27,6 +27,7 @@
             <a class="dropdown-item" href="{{ backpack_url('form-category') }}"><i class="nav-icon la la-sort-alpha-up"></i> Form categories</a>
             <a class="dropdown-item" href="{{ backpack_url('responder-request-type') }}"><i class="nav-icon la la-question"></i> Responder request types</a>
             <a class="dropdown-item" href="{{ backpack_url('user') }}"><i class="nav-icon la la-users"></i> Users</a>
+            <a class="dropdown-item" href="{{ backpack_url('report-type') }}"><i class="nav-icon la la-bug"></i> Report types</a>
         </div>
     </div>
     </div>
@@ -37,3 +38,4 @@
 <li class="nav-item position-relative"><a class="nav-link" href="{{backpack_url('answered-questionnaire')}}"><i class="nav-icon la la-trophy"></i> Kuisioner Yang Saya Isi @if(Helper::getTotalResponByResponderRequestType(4))<span class="badge bg-danger badge-notification badge-pill">{{Helper::getTotalResponByResponderRequestType(4)}}</span>@endif</a></a></li>
 
 <li class="nav-item position-relative"><a class="nav-link" href="{{ backpack_url('responder') }}"><i class="nav-icon la la-question"></i> Responders @if(Helper::getNewResponderNotification([2]))<span class="badge bg-twitter badge-notification badge-pill">{{Helper::getNewResponderNotification([2])}}</span>@endif</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('report') }}"><i class="nav-icon la la-bug"></i> Reports</a></li>
