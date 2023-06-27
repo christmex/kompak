@@ -84,5 +84,38 @@ class Helper {
             return 'danger';
         }
     }
+
+    public static function getHowManyResponderThatHaveQuestionnaire($user_id){
+
+    }
+
+    public static function getUserQuestionnaire($user_id){
+        return Questionnaire::where('user_id', $user_id)->get();
+    }
+
+    public static function countUserQuestionnaire($user_id){
+        return Questionnaire::where('user_id', $user_id)->where('is_active', true)->get()->count();
+    }
+
+    public static function showButtonForAcceptedRespon(){
+        return 3;
+    }
+
+    public static function hasFeedback(){
+        return 3;
+    }
+
+    public static function setResponderRequestTypeToDecline($responder_id){
+        
+        // Responder::where('id', $responder_id)->update([
+        //     'responder_request_type_id' => 5
+        // ]);
+    }
+    public static function deleteResponderRequestTypeDecline($responder_id){
+
+        Responder::destroy($responder_id);
+    }
+
+
  
 }

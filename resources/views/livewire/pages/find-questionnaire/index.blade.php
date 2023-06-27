@@ -72,11 +72,12 @@
         @if(count($modelQuestionnaire))
 
             @foreach($modelQuestionnaire as $questionnaire)
+                @if(($questionnaire->questionnaire_target - $questionnaire->countAllAcceptedResponder() > 0))
                 <div class="col-md-6 col-lg-3" wire:key="questionnaire-{{ $questionnaire->id }}">
                     <div class="card card-stacked card-link card-link-rotate" title="{{$questionnaire->questionnaire_title}}" role="button">
                         @if($questionnaire->questionnaire_target <= 10)
                             <div class="ribbon bg-yellow">
-                                {{$questionnaire->questionnaire_target}} responded lagi
+                                {{$questionnaire->questionnaire_target - $questionnaire->countAllAcceptedResponder()}} responded lagi
                             </div>
                         @endif
                         <div class="card-body">
@@ -94,6 +95,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
             @endforeach
 
             {{$modelQuestionnaire->links()}}

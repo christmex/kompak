@@ -30,4 +30,18 @@ class Questionnaire extends Model
     {
         return $this->belongsTo('App\Models\FormCategory', 'form_category_id');
     }
+
+    public function getAllResponder(){
+        return $this->hasMany('App\Models\Responder', 'questionnaire_id','id');
+    }
+
+    public function countAllAcceptedResponder(){
+        return $this->getAllResponder()->where('responder_request_type_id', 3)->count();
+    }
+
+    // public function getDiffResponder(){
+    //     return $this->countAllAcceptedResponder();
+    // }
+
+    
 }

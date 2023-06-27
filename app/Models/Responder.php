@@ -37,6 +37,11 @@ class Responder extends Model
         return $this->belongsTo('App\Models\ResponderRequestType', 'responder_request_type_id');
     }
 
+    public function reviewButton()
+    {
+        return '<a class="btn btn-sm btn-link" href="'.route('responder.edit',$this->id).'" data-toggle="tooltip" title="Tinjau Kuisioner"><i class="la la-search"></i> Tinjau</a>';
+    }
+
     /**
      * Scope a query to only include active users.
      */

@@ -30,7 +30,7 @@ class ResponderRequest extends FormRequest
             'user_id' => 'integer',
             'questionnaire_id' => 'required',
             'responder_request_type_id' => 'required',
-            'responder_proof' => 'sometimes|required|',
+            'responder_proof' => 'sometimes|required_if:responder_request_type_id,3',
             'responder_description_feedback' => 'required_if:responder_request_type_id,4',
         ];
     }

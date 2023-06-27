@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Helper;
 use App\Models\Questionnaire;
+use Backpack\CRUD\app\Library\Widget;
 use App\Http\Requests\ResponderRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -40,6 +42,17 @@ class ResponderCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::removeButtons(['create','delete','update']);
+        CRUD::addButtonFromModelFunction('line', 'reviewButton', 'reviewButton', 'beginning');
+        CRUD::addButtonFromView('line', 'redirect_to_find_questionnaire', 'redirect_to_find_questionnaire', 'beginning');
+        Widget::add([
+            'type'         => 'alert',
+            'class'        => 'alert alert-danger mb-2',
+            'heading'      => 'Duh ada masalah nih, tidak bisa menerima responder baru!',
+            'content'      => 'Setelah menerima maximal <strong>3 responder</strong>, anda harus setidaknya menjadi responder kepada responder anda jika responder anda memiliki kuesioner<br>Silahkan klik tombol <strong>saya mau bantu</strong> di bawah.',
+            'close_button' => false, // show close button or not
+        ]);
+
         $getAllQuestionnaire = Questionnaire::where('user_id',backpack_user()->id)->get()->pluck('id')->toArray();
         CRUD::addClause('whereIn', 'questionnaire_id', $getAllQuestionnaire);
         CRUD::addColumn([
@@ -92,6 +105,7 @@ class ResponderCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        CRUD::denyAccess(['create']);
         CRUD::setValidation(ResponderRequest::class);
 
         CRUD::field('user_id')->type('hidden')->default(backpack_user()->id);
@@ -106,7 +120,7 @@ class ResponderCrudController extends CrudController
         ]);
         CRUD::addField([
             'type' => 'select',
-            'label' => 'ResponderRequestType',
+            'label' => 'Responder Request Type',
             'name' => 'responder_request_type_id', // the relationship name in your Migration
             'entity' => 'ResponderRequestType', // the relationship name in your Model
             'attribute' => 'responder_request_type_name',
@@ -138,11 +152,19 @@ class ResponderCrudController extends CrudController
      */
     protected function setupUpdateOperation()
     {
-        $this->setupCreateOperation();
+        // cek apakah user yang sedang login merupakan responder
+        
         $currentEntry = CRUD::getCurrentEntry();
         // if(backpack_user()->id != $currentEntry->questionnaire->user_id){
             // This if for the responder
             if(backpack_user()->id == $currentEntry->user_id){
+                $this->setupCreateOperation();
+                if(!($currentEntry->questionnaire->questionnaire_target - $currentEntry->questionnaire->countAllAcceptedResponder() > 0)){
+                    Helper::deleteResponderRequestTypeDecline($currentEntry->id);
+                    die('SORRY, THIS OWNER NOT ACCEPTING ANY RESPONDER');
+                    // CRUD::denyAccess(['update']);
+                    // abort_if(true, 404, 'Not accepting any responder');
+                }
                 CRUD::setHeading('Selesaikan Kuisioner');
                 CRUD::setSubheading('');
                 CRUD::addField([
@@ -154,6 +176,17 @@ class ResponderCrudController extends CrudController
                     'tab' => 'Responder',
                     'default' => $currentEntry->questionnaire->user->name
                 ])->beforeField('questionnaire_id');;
+                CRUD::modifyField('responder_request_type_id',[
+                    'type' => 'select',
+                    'label' => 'Responder Request Type',
+                    'name' => 'responder_request_type_id', // the relationship name in your Migration
+                    'entity' => 'ResponderRequestType', // the relationship name in your Model
+                    'attribute' => 'responder_request_type_name',
+                    'allows_null' => false,
+                    'options' => function($query){
+                        return $query->where('id',2)->get();
+                    }
+                ]);
                 CRUD::modifyField('questionnaire_id',[
                     'type' => 'select',
                     'label' => 'Questionnaire',
@@ -163,17 +196,6 @@ class ResponderCrudController extends CrudController
                     'allows_null' => false,
                     'options' => function($query) use($currentEntry){
                         return $query->where('id',$currentEntry->questionnaire_id)->get();
-                    }
-                ]);
-                CRUD::modifyField('responder_request_type_id',[
-                    'type' => 'select',
-                    'label' => 'ResponderRequestType',
-                    'name' => 'responder_request_type_id', // the relationship name in your Migration
-                    'entity' => 'ResponderRequestType', // the relationship name in your Model
-                    'attribute' => 'responder_request_type_name',
-                    'allows_null' => false,
-                    'options' => function($query){
-                        return $query->where('id',2)->get();
                     }
                 ]);
                 if(!$currentEntry->responder_description_feedback){
@@ -188,6 +210,13 @@ class ResponderCrudController extends CrudController
 
             // This if for the kuisioner owner
             if(backpack_user()->id == $currentEntry->questionnaire->user_id){
+                if(!($currentEntry->questionnaire->questionnaire_target - $currentEntry->questionnaire->countAllAcceptedResponder() > 0)){
+                    Helper::deleteResponderRequestTypeDecline($currentEntry->id);
+                    die('SORRY, Your responder already done');
+                    // CRUD::denyAccess(['update']);
+                    // abort_if(true, 404, 'Not accepting any responder');
+                }
+                $this->setupCreateOperation();
                 CRUD::setHeading('Tinjau Kuisioner');
                 CRUD::setSubheading('');
                 CRUD::addField([
@@ -214,11 +243,34 @@ class ResponderCrudController extends CrudController
                         return $query->whereIn('id',[3,4])->get();
                     }
                 ]);
-
+                CRUD::modifyField('questionnaire_id',[
+                    'type' => 'select',
+                    'label' => 'Questionnaire',
+                    'name' => 'questionnaire_id', // the relationship name in your Migration
+                    'entity' => 'Questionnaire', // the relationship name in your Model
+                    'attribute' => 'questionnaire_title',
+                    'allows_null' => false,
+                    'options' => function($query) use($currentEntry){
+                        return $query->where('id',$currentEntry->questionnaire_id)->get();
+                    }
+                ]);
+                CRUD::modifyField('responder_proof',[
+                    'type' => 'upload',
+                    'default' => $currentEntry->responder_proof,
+                    'tab' => 'Responder',
+                    'withFiles' => [
+                        'disk' => 'public', // the disk where file will be stored
+                        'path' => 'responder-proof', // the path inside the disk where file will be stored
+                    ],
+                ]);
                 CRUD::modifyField('responder_description',[
                     'name' => 'responder_description',
                     'attributes' => ['disabled' => 'disabled']
                 ]);
+            }
+
+            if(!(backpack_user()->id == $currentEntry->user_id) && !(backpack_user()->id == $currentEntry->questionnaire->user_id)){
+                die('NO ACCESS');
             }
         // }
         

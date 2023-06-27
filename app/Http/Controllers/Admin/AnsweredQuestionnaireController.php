@@ -16,13 +16,15 @@ class AnsweredQuestionnaireController extends Controller
     public function answer(Questionnaire $questionnaire){
 
         // insert to responder table
-        $insertResponder = Responder::firstOrcreate(
-            [
-                'user_id' => backpack_user()->id,
-                'questionnaire_id' => $questionnaire->id
-            ],
-            ['responder_request_type_id' => 1]
-        );
+        if(($questionnaire->questionnaire_target - $questionnaire->countAllAcceptedResponder() > 0)){
+            Responder::firstOrcreate(
+                [
+                    'user_id' => backpack_user()->id,
+                    'questionnaire_id' => $questionnaire->id
+                ],
+                ['responder_request_type_id' => 1]
+            );
+        }
         
         return redirect()->route('answered-questionnaire.index');
         // dd($questionnaire->questionnaire_embed_link);

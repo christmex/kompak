@@ -18,6 +18,7 @@ class ResponderRequestTypeSeeder extends Seeder
             ['responder_request_type_name' => 'Finish'],
             ['responder_request_type_name' => 'Accepted'],
             ['responder_request_type_name' => 'Feedback'],
+            ['responder_request_type_name' => 'Declined'],
         ];
         
         DB::table('responder_request_types')->insertOrIgnore($responder_request_types);
