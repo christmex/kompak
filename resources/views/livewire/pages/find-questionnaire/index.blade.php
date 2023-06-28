@@ -6,7 +6,7 @@
             Overview
         </div>
         <h2 class="page-title">
-            Find Questionnaire
+            Cari Kuesioner
         </h2>
         </div>
         <!-- Page title actions -->
@@ -49,11 +49,13 @@
     </div>
     <div class="row my-3">
         <div class="col-12">
-            <div class="alert alert-success mb-2 " role="alert"> 
+            <div class="alert alert-success mb-2 alert-dismissible" role="alert">
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 <h4 class="alert-heading">Horeee, Ini Adalah versi Beta Aplikasi Kompak 🙌</h4>
                 <p>Jika terdapat hal hal yang tidak seharusnya terjadi, atau anda membutuhkan bantuan, dapat mengirim report kepada kami <strong><a href="http://kompak.test/app/report">disini</a></strong>, feedback anda sangat berarti untuk kami, terima kasih.</p>
             </div>
         </div>
+        
         <!-- <div class="col-12">
             <div class="card card-md">
                 <div class="card-stamp card-stamp-lg">

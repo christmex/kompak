@@ -35,7 +35,7 @@
 @endif
 <li class="nav-item"><a class="nav-link" href="{{ backpack_url('questionnaire') }}"><i class="nav-icon la la-question"></i> Kuesioner Saya</a></li>
 <li class="nav-item"><a class="nav-link" href="{{backpack_url('find-questionnaire')}}"><i class="nav-icon la la-search"></i> Cari Kuesioner</a></li>
-<li class="nav-item position-relative"><a class="nav-link" href="{{backpack_url('answered-questionnaire')}}"><i class="nav-icon la la-trophy"></i> Kuisioner Yang Saya Kerjakan @if(Helper::getTotalResponByResponderRequestType(4))<span class="badge bg-danger badge-notification badge-pill">{{Helper::getTotalResponByResponderRequestType(4)}}</span>@endif</a></a></li>
+<li class="nav-item position-relative"><a class="nav-link" href="{{backpack_url('answered-questionnaire')}}"><i class="nav-icon la la-trophy"></i> Kuesioner Yang Saya Kerjakan @if(Helper::getTotalResponByResponderRequestType(4))<span class="badge bg-danger badge-notification badge-pill">{{Helper::getTotalResponByResponderRequestType(4)}}</span>@endif</a></a></li>
 
 <li class="nav-item position-relative"><a class="nav-link" href="{{ backpack_url('responder') }}"><i class="nav-icon la la-question"></i> Responders @if(Helper::getNewResponderNotification([2]))<span class="badge bg-twitter badge-notification badge-pill">{{Helper::getNewResponderNotification([2])}}</span>@endif</a></li>
-<li class="nav-item"><a class="nav-link" href="{{ backpack_url('report') }}"><i class="nav-icon la la-bug"></i> Reports</a></li>
+<li class="nav-item"><a class="nav-link" href="{{ backpack_url('report') }}"><i class="nav-icon la la-bug"></i> Lapor</a></li>
