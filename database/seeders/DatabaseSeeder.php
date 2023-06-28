@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 use Database\Seeders\ReportTypeSeeder;
+use Database\Seeders\FormCategorySeeder;
 use Database\Seeders\ResponderRequestTypeSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ResponderRequestTypeSeeder::class,
             ReportTypeSeeder::class,
+            FormCategorySeeder::class,
         ]);
     }
 }
